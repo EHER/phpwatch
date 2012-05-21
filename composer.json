@@ -1,0 +1,18 @@
+{
+    "name": "eher/phpwatch",
+    "description": "Command line client that allow you to run arbitrary shell commands whenever changes occur in a list of specified files",
+    "require": {
+        "maximebf/consolekit": "dev-master",
+        "symfony/finder": "v2.0.14",
+        "behat/behat": "2.4.0"
+    },
+    "bin": [
+        "bin/phpwatch"
+        ],
+    "authors": [
+        {
+            "name": "Eher",
+            "email": "alexandre@eher.com.br"
+        }
+    ]
+}

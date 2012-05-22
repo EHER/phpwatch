@@ -4,13 +4,22 @@ Feature: phpwatch
     As a programmer
     I need a command line client that allow you to run arbitrary shell commands whenever changes occur in a list of specified files
 
+    Scenario: Run phpwatch command without parameter
+        When I run "~/src/phpwatch/bin/phpwatch phpwatch"
+        Then I should get:
+         """
+         Use './phpwatch phpwatch --help' for more info
+         """
+
     Scenario: Run a command when a monitored file was saved
         Given I am in a directory "test"
         And I have a file named "dojo.php"
         And I have a file named "dojoTest.php"
-        When I run "~/src/phpwatch/bin/phpwatch"
+        When I run "~/src/phpwatch/bin/phpwatch phpwatch phpunit ."
         Then I should get:
         """
         phpwatch: running...
+        Watching => .
+        Running: phpunit
         """
 

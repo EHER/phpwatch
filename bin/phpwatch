@@ -1,6 +1,12 @@
 #!/usr/bin/env php
 <?php
 
+namespace Eher\PHPWatch;
+
 require __DIR__ . "/../vendor/autoload.php";
 
-echo "phpwatch: running...\n";
+use ConsoleKit\Console;
+
+$console = new Console();
+$console->addCommand("Eher\PHPWatch\PHPWatchCommand");
+$console->run();

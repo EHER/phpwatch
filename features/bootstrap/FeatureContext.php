@@ -7,12 +7,6 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
-//
-// Require 3rd-party libraries here:
-//
-//   require_once 'PHPUnit/Autoload.php';
-//   require_once 'PHPUnit/Framework/Assert/Functions.php';
-//
 define("TEST_DIR", sys_get_temp_dir() . DIRECTORY_SEPARATOR . "phpwatch_54ndb0x" . DIRECTORY_SEPARATOR);
 
 /**

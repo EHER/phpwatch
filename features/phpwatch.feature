@@ -8,18 +8,19 @@ Feature: phpwatch
         When I run "~/src/phpwatch/bin/phpwatch phpwatch"
         Then I should get:
          """
-         Use './phpwatch phpwatch --help' for more info
+         Use './phpwatch --help' for more info
          """
 
     Scenario: Run a command when a monitored file was saved
         Given I am in a directory "test"
         And I have a file named "dojo.php"
         And I have a file named "dojoTest.php"
-        When I run "~/src/phpwatch/bin/phpwatch phpwatch phpunit ."
+        When I run "~/src/phpwatch/bin/phpwatch 'echo oi' ."
         Then I should get:
         """
         phpwatch: running...
         Watching => .
-        Running: phpunit
+        Running: echo oi
+        oi
         """
 

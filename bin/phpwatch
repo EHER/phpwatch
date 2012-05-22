@@ -7,6 +7,11 @@ require __DIR__ . "/../vendor/autoload.php";
 
 use ConsoleKit\Console;
 
+$argv = isset($_SERVER['argv']) ? array_slice($_SERVER['argv'], 1) : array();
+
 $console = new Console();
 $console->addCommand("Eher\PHPWatch\PHPWatchCommand");
-$console->run();
+$console->run(array_merge(
+    array('phpwatch'),
+    $argv
+));

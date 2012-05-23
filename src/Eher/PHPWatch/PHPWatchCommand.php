@@ -27,8 +27,9 @@ class PHPWatchCommand extends Command
     private function showHelp()
     {
             $this->writeln("Usage: ./phpwatch [options] \"command\" path");
-            $this->writeln("  --help\t\tShow this message");
-            $this->writeln("  --version\t\tShow the version");
+            $this->writeln("");
+            $this->writeln("  --help      Show this message");
+            $this->writeln("  --version   Show the version");
             exit;
     }
 

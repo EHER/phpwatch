@@ -2,7 +2,6 @@
     "name": "eher/phpwatch",
     "description": "Command line client that allow you to run arbitrary shell commands whenever changes occur in a list of specified files",
     "require": {
-        "MarcelloDuarte/AutoRun": "1.0.0",
         "maximebf/consolekit": "dev-master",
         "symfony/finder": "v2.0.14",
         "behat/behat": "2.4.0"

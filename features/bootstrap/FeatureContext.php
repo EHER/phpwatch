@@ -7,55 +7,27 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
-define("TEST_DIR", sys_get_temp_dir() . DIRECTORY_SEPARATOR . "phpwatch_54ndb0x" . DIRECTORY_SEPARATOR);
-
 /**
  * Features context.
  */
 class FeatureContext extends BehatContext
 {
     /**
-     * Initializes context.
-     * Every scenario gets it's own context object.
-     *
-     * @param   array   $parameters     context parameters (set them up through behat.yml)
+     * @Given /^I have a directory "([^"]*)"$/
      */
-    public function __construct(array $parameters)
+    public function iHaveADirectory($directory)
     {
-    }
-
-    /**
-     * @AfterSuite
-     */
-    public static function cleanTestFolder()
-    {
-        if (is_dir(TEST_DIR)) {
-            self::rmdirRecursive(TEST_DIR);
-        }
-    }
-
-    /**
-     * @Given /^I am in a directory "([^"]*)"$/
-     */
-    public function iAmInADirectory($dir)
-    {
-        $realDir = TEST_DIR . $dir;
-
-        if (!file_exists(TEST_DIR)) {
-            mkdir(TEST_DIR);
-            if (!file_exists($realDir)) {
-                mkdir($realDir);
+            if (!file_exists($directory)) {
+                mkdir($directory);
             }
-        }
-        chdir($realDir);
     }
 
     /**
-     * @Given /^I have a file named "([^"]*)"$/
+     * @Given /^I [sh]ave a file named "([^"]*)" in "([^"]*)"$/
      */
-    public function iHaveAFileNamed($fileName)
+    public function iHaveAFileNamedIn($fileName, $directory)
     {
-        touch($fileName);
+        touch($directory . DIRECTORY_SEPARATOR . $fileName);
     }
 
     /**
@@ -78,24 +50,10 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * Removes files and folders recursively at provided path.
-     * @param   string  $path
+     * @Given /^I wait (\d+) seconds?$/
      */
-    private static function rmdirRecursive($path) {
-        $files = scandir($path);
-        array_shift($files);
-        array_shift($files);
-
-        foreach ($files as $file) {
-            $file = $path . DIRECTORY_SEPARATOR . $file;
-            if (is_dir($file)) {
-                self::rmdirRecursive($file);
-            } else {
-                echo($file);
-            }
-        }
-
-        echo($path);
+    public function iWaitSecond($seconds)
+    {
+        sleep($seconds);
     }
-
 }

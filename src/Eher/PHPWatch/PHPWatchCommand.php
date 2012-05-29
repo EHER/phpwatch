@@ -9,6 +9,7 @@ class PHPWatchCommand extends Command
 {
     private $extension = "*.*";
     private $once = false;
+    private $verbose = false;
 
     public function execute(array $args, array $options = array())
     {
@@ -46,6 +47,10 @@ class PHPWatchCommand extends Command
         if (isset($options['once'])) {
             $this->once = $options['once'];
         }
+
+        if (isset($options['verbose'])) {
+            $this->verbose = true;
+        }
     }
 
     private function showHelp()
@@ -54,6 +59,7 @@ class PHPWatchCommand extends Command
             $this->writeln("");
             $this->writeln("  --ext       Filter files by extension");
             $this->writeln("  --once      Executes the command once");
+            $this->writeln("  --verbose   Verbose mode");
             $this->writeln("  --help      Show this message");
             $this->writeln("  --version   Show the version");
             $this->writeln("");
@@ -69,7 +75,9 @@ class PHPWatchCommand extends Command
     private function watchFiles($command, $path)
     {
             $this->writeln("phpwatch: running...");
-            $this->writeln("Watching => $path");
+            if ($this->verbose) {
+                $this->writeln("Watching => $path");
+            }
             while(true) {
                 if ($this->hasChangesIn($path)) {
                     $this->runCommand($command);
@@ -87,11 +95,15 @@ class PHPWatchCommand extends Command
 
         $iterator = $finder
             ->files()
+            ->followLinks()
             ->date('>= now - 1 second')
             ->name($this->extension)
             ->in($path);
 
         foreach ($iterator as $file) {
+            if ($this->verbose) {
+                $this->writeln($file->getRelativePathname());
+            }
             return true;
         }
         return false;
@@ -99,8 +111,10 @@ class PHPWatchCommand extends Command
 
     private function runCommand($command)
     {
-        $this->writeln("Running: $command");
-        system($command);
+        if ($this->verbose) {
+            $this->writeln($command);
+        }
+        echo shell_exec($command);
     }
 
     private function showDefaultMessage()

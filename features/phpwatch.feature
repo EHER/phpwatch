@@ -20,6 +20,7 @@ Feature: phpwatch
 
           --ext       Filter files by extension
           --once      Executes the command once
+          --verbose   Verbose mode
           --help      Show this message
           --version   Show the version
         """
@@ -31,7 +32,18 @@ Feature: phpwatch
         Then I should get:
         """
         phpwatch: running...
+        saved
+        """
+
+    Scenario: Run a command when a monitored file was saved in verbose mode
+        Given I have a directory "sandbox"
+        And I save a file named "file.php" in "sandbox"
+        When I run "bin/phpwatch --once --verbose 'echo saved' sandbox"
+        Then I should get:
+        """
+        phpwatch: running...
         Watching => sandbox
-        Running: echo saved
+        file.php
+        echo saved
         saved
         """

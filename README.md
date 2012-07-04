@@ -2,7 +2,6 @@
 Command line client that allow you to run arbitrary shell commands whenever changes occur in a list of specified files
 
 ## Install
-
     git clone git://github.com/EHER/phpwatch.git
     cd phpwatch
     wget getcomposer.org/composer.phar
@@ -10,5 +9,4 @@ Command line client that allow you to run arbitrary shell commands whenever chan
     
 
 ## Run
-
     bin/phpwatch

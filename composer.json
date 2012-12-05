@@ -3,7 +3,7 @@
     "description": "Command line client that allow you to run arbitrary shell commands whenever changes occur in a list of specified files",
     "license": "BSD-3-Clause",
     "require": {
-        "maximebf/consolekit": "dev-master@dev",
+        "maximebf/consolekit": "@dev",
         "symfony/finder": "v2.1.4"
     },
     "require-dev": {

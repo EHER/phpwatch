@@ -4,7 +4,7 @@
     "license": "BSD-3-Clause",
     "minimum-stabiliy": "dev",
     "require": {
-        "maximebf/consolekit": "@dev",
+        "maximebf/consolekit": "dev-master",
         "symfony/finder": "v2.1.4"
     },
     "require-dev": {

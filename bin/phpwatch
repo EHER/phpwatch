@@ -3,9 +3,24 @@
 
 namespace Eher\PHPWatch;
 
-require __DIR__ . "/../vendor/autoload.php";
-
 use ConsoleKit\Console;
+
+$autoloadFiles = array(
+    __DIR__ . "/../vendor/autoload.php",
+    __DIR__ . "/../../../../vendor/autoload.php",
+);
+
+foreach ($autoloadFiles as $autoloadFile) {
+    if (true === file_exists($autoloadFile)) {
+        require $autoloadFile;
+        define('PHPWATCH_AUTOLOAD_FILE', realpath($autoloadFile));
+        break;
+    }
+}
+
+if (false === defined('PHPWATCH_AUTOLOAD_FILE')) {
+    trigger_error('Unable to find the autoload file.', E_USER_ERROR);
+}
 
 $argv = isset($_SERVER['argv']) ? array_slice($_SERVER['argv'], 1) : array();
 

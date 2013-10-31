@@ -10,3 +10,6 @@ Command line client that allow you to run arbitrary shell commands whenever chan
 
 ## Run
     bin/phpwatch
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/EHER/phpwatch/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

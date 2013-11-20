@@ -4,11 +4,11 @@
     "license": "BSD-3-Clause",
     "minimum-stabiliy": "dev",
     "require": {
-        "maximebf/consolekit": "dev-master",
-        "symfony/finder": "v2.1.4"
+        "maximebf/consolekit": "1.0.3",
+        "symfony/finder": "2.1.4"
     },
     "require-dev": {
-        "behat/behat": "v2.4.4"
+        "behat/behat": "2.4.4"
     },
     "autoload": {
         "psr-0": {

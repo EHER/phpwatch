@@ -40,7 +40,7 @@ class PHPWatchCommand extends Command
                 $this->writeln("");
                 exit(1);
             } else {
-                $this->extension = "*." . $options['ext'];
+                $this->extension = "*.".$options['ext'];
             }
         }
 
@@ -55,38 +55,38 @@ class PHPWatchCommand extends Command
 
     private function showHelp()
     {
-            $this->writeln("Usage: phpwatch [options] \"command\" path");
-            $this->writeln("");
-            $this->writeln("  --ext       Filter files by extension");
-            $this->writeln("  --once      Executes the command once");
-            $this->writeln("  --verbose   Verbose mode");
-            $this->writeln("  --help      Show this message");
-            $this->writeln("  --version   Show the version");
-            $this->writeln("");
-            exit;
+        $this->writeln("Usage: phpwatch [options] \"command\" path");
+        $this->writeln("");
+        $this->writeln("  --ext       Filter files by extension");
+        $this->writeln("  --once      Executes the command once");
+        $this->writeln("  --verbose   Verbose mode");
+        $this->writeln("  --help      Show this message");
+        $this->writeln("  --version   Show the version");
+        $this->writeln("");
+        exit;
     }
 
     private function showVersion()
     {
-            $this->writeln("New Version!");
-            exit;
+        $this->writeln("New Version!");
+        exit;
     }
 
     private function watchFiles($command, $path)
     {
-            $this->writeln("phpwatch: running...");
-            if ($this->verbose) {
-                $this->writeln("Watching => $path");
-            }
-            while(true) {
-                if ($this->hasChangesIn($path)) {
-                    $this->runCommand($command);
-                    if ($this->once) {
-                        exit;
-                    }
+        $this->writeln("phpwatch: running...");
+        if ($this->verbose) {
+            $this->writeln("Watching => $path");
+        }
+        while (true) {
+            if ($this->hasChangesIn($path)) {
+                $this->runCommand($command);
+                if ($this->once) {
+                    exit;
                 }
-                sleep(1);
             }
+            sleep(1);
+        }
     }
 
     private function hasChangesIn($path)
@@ -104,8 +104,10 @@ class PHPWatchCommand extends Command
             if ($this->verbose) {
                 $this->writeln($file->getRelativePathname());
             }
+
             return true;
         }
+
         return false;
     }
 
@@ -119,6 +121,6 @@ class PHPWatchCommand extends Command
 
     private function showDefaultMessage()
     {
-       $this->writeln("Use 'phpwatch --help' for more info");
+        $this->writeln("Use 'phpwatch --help' for more info");
     }
 }

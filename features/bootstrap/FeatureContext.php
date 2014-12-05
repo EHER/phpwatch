@@ -1,11 +1,7 @@
 <?php
 
-use Behat\Behat\Context\ClosuredContextInterface,
-    Behat\Behat\Context\TranslatedContextInterface,
-    Behat\Behat\Context\BehatContext,
-    Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Context\BehatContext;
+use Behat\Gherkin\Node\PyStringNode;
 
 /**
  * Features context.
@@ -17,9 +13,9 @@ class FeatureContext extends BehatContext
      */
     public function iHaveADirectory($directory)
     {
-            if (!file_exists($directory)) {
-                mkdir($directory);
-            }
+        if (!file_exists($directory)) {
+            mkdir($directory);
+        }
     }
 
     /**
@@ -27,7 +23,7 @@ class FeatureContext extends BehatContext
      */
     public function iHaveAFileNamedIn($fileName, $directory)
     {
-        touch($directory . DIRECTORY_SEPARATOR . $fileName);
+        touch($directory.DIRECTORY_SEPARATOR.$fileName);
     }
 
     /**
@@ -35,8 +31,8 @@ class FeatureContext extends BehatContext
      */
     public function iRun($command)
     {
-       exec($command, $output);
-       $this->output = trim(implode("\n", $output));
+        exec($command, $output);
+        $this->output = trim(implode("\n", $output));
     }
 
     /** @Then /^I should get:$/ */
@@ -44,7 +40,7 @@ class FeatureContext extends BehatContext
     {
         if ((string) $string !== $this->output) {
             throw new Exception(
-                "Actual output is:\n" . $this->output
+                "Actual output is:\n".$this->output
             );
         }
     }
